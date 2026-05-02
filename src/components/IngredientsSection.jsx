@@ -6,12 +6,17 @@ function IngredientsSection({ id, ingredients }) {
       <div className="site-container ingredients-grid">
         <div>
           <p className="mr-eyebrow">Ingredients</p>
-          <h2 className="section-title">Simple, clear, and carefully chosen.</h2>
+          <h2 className="section-title">
+            Simple, clear, and carefully chosen.
+          </h2>
           <p className="section-copy">
-            Every loaf is made in small batches with simple, honest ingredients. We
-            speak carefully about what goes into each bake and avoid overstated claims.
+            Every loaf is made in small batches with simple, honest ingredients.
+            We speak carefully about what goes into each bake and avoid
+            overstated claims.
           </p>
-          <p className="ingredients-note">Made in small batches with simple, honest ingredients.</p>
+          <p className="ingredients-note">
+            Made in small batches with simple, honest ingredients.
+          </p>
         </div>
 
         <div className="ingredients-list">

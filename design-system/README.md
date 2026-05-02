@@ -9,12 +9,12 @@ There is no existing codebase or Figma file — the system was built from the br
 
 ## Index
 
-| Path | What it holds |
-|---|---|
-| `README.md` | This file. Brand context, content, visual and iconography rules. |
-| `SKILL.md` | Front-matter for Claude Skills compatibility. |
+| Path                  | What it holds                                                              |
+| --------------------- | -------------------------------------------------------------------------- |
+| `README.md`           | This file. Brand context, content, visual and iconography rules.           |
+| `SKILL.md`            | Front-matter for Claude Skills compatibility.                              |
 | `colors_and_type.css` | All design tokens — colors, fonts, scale, spacing, radii, shadows, motion. |
-| `assets/` | Logos (wordmark, monogram, circular stamp). All SVG, monochrome. |
+| `assets/`             | Logos (wordmark, monogram, circular stamp). All SVG, monochrome.           |
 
 ## Brand Personality
 
@@ -62,16 +62,16 @@ Not like this:
 
 The palette is two black/white anchors plus three natural tones.
 
-| Token | Hex | Use |
-|---|---|---|
-| `--mr-black` | `#000000` | Primary ink. Logo. Stamps. |
-| `--mr-white` | `#FFFFFF` | Surface. Negative space. |
-| `--mr-beige` | `#F5F1E8` | Default page surface. Warm cream. |
+| Token             | Hex       | Use                                              |
+| ----------------- | --------- | ------------------------------------------------ |
+| `--mr-black`      | `#000000` | Primary ink. Logo. Stamps.                       |
+| `--mr-white`      | `#FFFFFF` | Surface. Negative space.                         |
+| `--mr-beige`      | `#F5F1E8` | Default page surface. Warm cream.                |
 | `--mr-beige-deep` | `#EDE6D3` | Layered surface, card backgrounds against beige. |
-| `--mr-brown` | `#8B5E3C` | Accent — crust, sparingly. |
-| `--mr-olive` | `#6B705C` | Accent — sage/herbal, sparingly. |
-| `--mr-ink` | `#1A1714` | Body text — softer than pure black on beige. |
-| `--mr-line` | `#D9D2C2` | Hairline dividers on beige. |
+| `--mr-brown`      | `#8B5E3C` | Accent — crust, sparingly.                       |
+| `--mr-olive`      | `#6B705C` | Accent — sage/herbal, sparingly.                 |
+| `--mr-ink`        | `#1A1714` | Body text — softer than pure black on beige.     |
+| `--mr-line`       | `#D9D2C2` | Hairline dividers on beige.                      |
 
 Rules:
 

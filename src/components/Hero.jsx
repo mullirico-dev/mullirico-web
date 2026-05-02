@@ -8,11 +8,13 @@ function Hero({ heroImage, accentImage, ordersEmail, instagramUrl }) {
         <div>
           <p className="mr-eyebrow">Cypress, Texas · Organic sourdough</p>
           <LogoWordmark className="hero-wordmark" />
-          <h1 className="hero-title">Naturally fermented bread, baked slowly each week.</h1>
+          <h1 className="hero-title">
+            Naturally fermented bread, baked slowly each week.
+          </h1>
           <p className="hero-lede">
-            Small-batch sourdough made with simple, real ingredients. No preservatives.
-            No seed oils. No artificial additives. Orders are handled directly by email
-            or Instagram.
+            Small-batch sourdough made with simple, real ingredients. No
+            preservatives. No seed oils. No artificial additives. Orders are
+            handled directly by email or Instagram.
           </p>
 
           <div className="hero-actions">

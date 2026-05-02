@@ -160,17 +160,119 @@ npm run build
 npm run preview
 ```
 
-## Deployment Notes
+## Deployment Flow
 
-The Vite config currently sets:
+This repository now supports two deployment targets:
 
-```js
-base: './'
+### `dev` branch → GitHub Pages
+
+- Every push or merge to `dev` triggers the GitHub Actions workflow:
+  - `.github/workflows/deploy-dev-pages.yml`
+- That workflow builds the Vite app with a GitHub Pages base path and deploys the `dist/` output to GitHub Pages.
+- The expected URL format is:
+  - `https://<github-username>.github.io/mullirico-web/`
+
+### `main` branch → Vercel production
+
+- Vercel should track `main` as the Production Branch.
+- Every push or merge to `main` creates the live production deployment used by:
+  - `https://www.mullirico.com`
+
+### Branch-aware Vite base path
+
+The app uses `VITE_BASE_PATH` in `vite.config.js`.
+
+- Default local/Vercel behavior:
+  - `base: /`
+- GitHub Pages workflow behavior:
+  - `base: /mullirico-web/`
+
+This allows the same app to work correctly in both environments without maintaining separate branches or configs.
+
+## Versioning Flow
+
+This repository now uses semantic versioning starting at:
+
+```text
+v1.0.0
 ```
 
-This keeps the generated asset paths friendly for static deployment and avoids broken root-relative asset loading in many GitHub Pages-style scenarios.
+### Version bump rules
 
-If you later deploy under a dedicated production path strategy, revisit `vite.config.js`.
+Only pull requests merged from feature branches into `dev` should trigger a version bump.
+
+The label convention used in this repo is:
+
+- `semver:patch`
+- `semver:minor`
+- `semver:major`
+
+Examples:
+
+- `v1.0.0` + `semver:patch` → `v1.0.1`
+- `v1.0.0` + `semver:minor` → `v1.1.0`
+- `v1.0.0` + `semver:major` → `v2.0.0`
+
+### Branch behavior
+
+- `feature/*` → `dev`
+  - must include exactly one semver label
+  - must pass formatting, unit tests, and build checks
+  - after merge, GitHub Actions bumps `package.json` and `package-lock.json`
+  - after merge, GitHub Actions creates and pushes the matching git tag
+- `dev` → `main`
+  - no semver label required
+  - no automatic version bump
+  - used only to promote already validated changes to production
+
+### Release workflows
+
+The repo includes:
+
+- `.github/workflows/ci.yml`
+  - runs format check, tests, and build on PRs to `dev` and `main`
+- `.github/workflows/pr-semver-label.yml`
+  - requires exactly one semver label on PRs into `dev` from feature branches
+- `.github/workflows/release-dev-version.yml`
+  - bumps version and creates a git tag after merge into `dev`
+- `.github/workflows/publish-tag-release.yml`
+  - publishes a GitHub Release for each new `v*` tag
+  - generates release notes automatically from merged pull requests
+  - groups changes using `.github/release.yml`
+
+### GitHub release history
+
+Every version tag is also published as a GitHub Release so you can browse:
+
+- the exact version number
+- the merged pull requests included in that version
+- the grouped change summary based on `semver:major`, `semver:minor`, and `semver:patch`
+- the full compare link between releases
+
+This gives you a repo-level release history directly in GitHub under the `Releases` tab, while the underlying git tags remain available in the `Tags` view.
+
+### Local commands
+
+You can run the same checks locally with:
+
+```bash
+make format-check
+make test
+make build
+make ci
+```
+
+## Deployment Notes
+
+The Vite base path is branch-aware through `VITE_BASE_PATH`:
+
+- local and Vercel production default to `/`
+- the GitHub Pages workflow sets `/mullirico-web/`
+
+The repo also includes `vercel.json`, which disables automatic Vercel deployments for the `dev` branch so the environment split stays clean:
+
+- `dev` → GitHub Pages
+- `main` → Vercel production
 
 ## SEO and Metadata
 
