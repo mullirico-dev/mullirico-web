@@ -1,0 +1,199 @@
+/* ===========================================================
+   MulliRico Design System — Colors & Type
+   Artisan sourdough bakery — minimal, natural, typography-first
+   =========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --mr-black: #000000;
+  --mr-white: #ffffff;
+  --mr-beige: #f5f1e8;
+  --mr-beige-deep: #ede6d3;
+  --mr-brown: #8b5e3c;
+  --mr-brown-deep: #6b4427;
+  --mr-olive: #6b705c;
+  --mr-olive-deep: #545944;
+  --mr-ink: #1a1714;
+  --mr-ink-2: #3a332c;
+  --mr-ink-3: #6e665c;
+  --mr-line: #d9d2c2;
+  --mr-line-strong: #b8ae99;
+
+  --mr-bg: var(--mr-beige);
+  --mr-bg-alt: var(--mr-white);
+  --mr-bg-deep: var(--mr-beige-deep);
+  --mr-bg-inverse: var(--mr-ink);
+
+  --mr-fg-1: var(--mr-ink);
+  --mr-fg-2: var(--mr-ink-2);
+  --mr-fg-3: var(--mr-ink-3);
+  --mr-fg-on-dark: var(--mr-beige);
+  --mr-fg-accent: var(--mr-brown);
+  --mr-fg-quiet: var(--mr-olive);
+
+  --mr-border: var(--mr-line);
+  --mr-border-strong: var(--mr-line-strong);
+  --mr-border-ink: var(--mr-ink);
+
+  --mr-font-script: 'Allura', 'Pinyon Script', 'Snell Roundhand', cursive;
+  --mr-font-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --mr-font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --mr-text-2xs: 11px;
+  --mr-text-xs: 12px;
+  --mr-text-sm: 14px;
+  --mr-text-base: 16px;
+  --mr-text-md: 18px;
+  --mr-text-lg: 22px;
+  --mr-text-xl: 28px;
+  --mr-text-2xl: 36px;
+  --mr-text-3xl: 48px;
+  --mr-text-4xl: 64px;
+  --mr-text-display: 96px;
+
+  --mr-tracking-tight: -0.02em;
+  --mr-tracking-normal: 0;
+  --mr-tracking-wide: 0.08em;
+  --mr-tracking-wider: 0.18em;
+  --mr-tracking-widest: 0.28em;
+
+  --mr-leading-tight: 1.05;
+  --mr-leading-snug: 1.2;
+  --mr-leading-normal: 1.5;
+  --mr-leading-loose: 1.7;
+
+  --mr-space-1: 4px;
+  --mr-space-2: 8px;
+  --mr-space-3: 12px;
+  --mr-space-4: 16px;
+  --mr-space-5: 24px;
+  --mr-space-6: 32px;
+  --mr-space-7: 48px;
+  --mr-space-8: 64px;
+  --mr-space-9: 96px;
+  --mr-space-10: 128px;
+
+  --mr-radius-0: 0;
+  --mr-radius-1: 2px;
+  --mr-radius-2: 4px;
+  --mr-radius-3: 8px;
+  --mr-radius-pill: 999px;
+
+  --mr-shadow-1: 0 1px 2px rgba(26, 23, 20, 0.06);
+  --mr-shadow-2: 0 2px 8px rgba(26, 23, 20, 0.08);
+  --mr-shadow-3: 0 8px 24px rgba(26, 23, 20, 0.1);
+  --mr-shadow-stamp: inset 0 0 0 1.5px var(--mr-ink);
+
+  --mr-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --mr-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --mr-dur-fast: 140ms;
+  --mr-dur: 240ms;
+  --mr-dur-slow: 420ms;
+}
+
+.mr-base,
+body.mr {
+  background: var(--mr-bg);
+  color: var(--mr-fg-1);
+  font-family: var(--mr-font-sans);
+  font-size: var(--mr-text-base);
+  line-height: var(--mr-leading-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.mr-wordmark {
+  font-family: var(--mr-font-script);
+  font-weight: 400;
+  letter-spacing: var(--mr-tracking-normal);
+  line-height: 1;
+}
+
+.mr-display {
+  font-family: var(--mr-font-sans);
+  font-size: var(--mr-text-display);
+  font-weight: 300;
+  letter-spacing: var(--mr-tracking-tight);
+  line-height: var(--mr-leading-tight);
+}
+
+.mr-h1 {
+  font-family: var(--mr-font-sans);
+  font-size: var(--mr-text-3xl);
+  font-weight: 400;
+  letter-spacing: var(--mr-tracking-tight);
+  line-height: var(--mr-leading-tight);
+}
+
+.mr-h2 {
+  font-family: var(--mr-font-sans);
+  font-size: var(--mr-text-2xl);
+  font-weight: 400;
+  letter-spacing: var(--mr-tracking-tight);
+  line-height: var(--mr-leading-snug);
+}
+
+.mr-h3 {
+  font-family: var(--mr-font-sans);
+  font-size: var(--mr-text-xl);
+  font-weight: 500;
+  letter-spacing: var(--mr-tracking-tight);
+  line-height: var(--mr-leading-snug);
+}
+
+.mr-h4 {
+  font-family: var(--mr-font-sans);
+  font-size: var(--mr-text-lg);
+  font-weight: 500;
+  line-height: var(--mr-leading-snug);
+}
+
+.mr-body {
+  font-family: var(--mr-font-sans);
+  font-size: var(--mr-text-base);
+  font-weight: 400;
+  line-height: var(--mr-leading-normal);
+  color: var(--mr-fg-2);
+}
+
+.mr-body-sm {
+  font-family: var(--mr-font-sans);
+  font-size: var(--mr-text-sm);
+  line-height: var(--mr-leading-normal);
+  color: var(--mr-fg-2);
+}
+
+.mr-eyebrow {
+  margin: 0;
+  font-family: var(--mr-font-sans);
+  font-size: var(--mr-text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--mr-tracking-widest);
+  color: var(--mr-fg-3);
+}
+
+.mr-caption {
+  font-family: var(--mr-font-sans);
+  font-size: var(--mr-text-xs);
+  font-weight: 400;
+  line-height: var(--mr-leading-normal);
+  color: var(--mr-fg-3);
+}
+
+.mr-mono {
+  font-family: var(--mr-font-mono);
+  font-size: var(--mr-text-sm);
+  letter-spacing: var(--mr-tracking-wide);
+}
+
+.mr-rule {
+  border: 0;
+  border-top: 1px solid var(--mr-border);
+  margin: var(--mr-space-6) 0;
+}
+
+.mr-rule-ink {
+  border-top-color: var(--mr-ink);
+}
