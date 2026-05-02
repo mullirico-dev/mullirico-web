@@ -31,7 +31,6 @@ function LandingSelector({ onEnterBread }) {
       </header>
 
       <div className="landing-panels">
-
         {/* ── Left: Sourdough Bread ── */}
         <button
           className="landing-panel landing-panel--bread"
@@ -48,7 +47,9 @@ function LandingSelector({ onEnterBread }) {
             <div className="landing-panel__text">
               <p className="landing-panel__eyebrow">Artisan sourdough</p>
               <h2 className="landing-panel__title">
-                Sourdough<br />Bread
+                Sourdough
+                <br />
+                Bread
               </h2>
               <hr className="landing-panel__rule" aria-hidden="true" />
               <p className="landing-panel__sub">800 g · $12 · Small-batch</p>
@@ -71,7 +72,10 @@ function LandingSelector({ onEnterBread }) {
         >
           <div className="landing-panel__content">
             {/* Toast notification */}
-            <div className={`bakes-toast${bakesToast ? ' bakes-toast--visible' : ''}`} aria-live="polite">
+            <div
+              className={`bakes-toast${bakesToast ? ' bakes-toast--visible' : ''}`}
+              aria-live="polite"
+            >
               <p className="bakes-toast__line">Coming soon.</p>
               <p className="bakes-toast__line">Follow us for updates.</p>
               <a
@@ -87,11 +91,18 @@ function LandingSelector({ onEnterBread }) {
             </div>
 
             <div className="landing-panel__text">
-              <p className="landing-panel__eyebrow landing-panel__eyebrow--quiet">Custom bakes</p>
+              <p className="landing-panel__eyebrow landing-panel__eyebrow--quiet">
+                Custom bakes
+              </p>
               <h2 className="landing-panel__title landing-panel__title--quiet">
-                Mully<br />Bakes
+                Mully
+                <br />
+                Bakes
               </h2>
-              <hr className="landing-panel__rule landing-panel__rule--quiet" aria-hidden="true" />
+              <hr
+                className="landing-panel__rule landing-panel__rule--quiet"
+                aria-hidden="true"
+              />
               <p className="landing-panel__sub landing-panel__sub--quiet">
                 Cakes designed for you
               </p>
@@ -100,7 +111,6 @@ function LandingSelector({ onEnterBread }) {
             <p className="landing-panel__soon">Coming soon</p>
           </div>
         </button>
-
       </div>
     </div>
   );
