@@ -18,13 +18,18 @@ function Gallery({ id, items }) {
 
         <div className="gallery-grid">
           {items.map((item, index) => (
-            <figure key={`${item.caption}-${index}`} className="gallery-card">
-              <img
-                src={item.src}
-                alt={item.alt}
-                loading="lazy"
-                className="gallery-card__image"
-              />
+            <figure
+              key={`${item.caption}-${index}`}
+              className={`gallery-card gallery-card--${index + 1}`}
+            >
+              <div className="gallery-card__frame">
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  loading="lazy"
+                  className="gallery-card__image"
+                />
+              </div>
               <figcaption className="gallery-card__caption">
                 {item.caption}
               </figcaption>

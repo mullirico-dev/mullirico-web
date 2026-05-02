@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import LandingSelector from './components/LandingSelector';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ProductSection from './components/ProductSection';
@@ -12,8 +14,6 @@ import breadOne from './assets/bread-1.jpg';
 import breadTwo from './assets/bread-2.jpg';
 import breadThree from './assets/bread-3.jpg';
 import breadFour from './assets/bread-4.jpg';
-import crumbImage from './assets/crumb.jpg';
-import labelImage from './assets/label.jpg';
 
 const instagramUrl =
   'https://www.instagram.com/mullirico?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==';
@@ -50,7 +50,7 @@ const featureCards = [
 ];
 
 const productDetails = {
-  name: 'Organic Sourdough Bread',
+  name: 'Artisan Sourdough Bread',
   price: 'Only $12',
   weight: 'Net wt. 800 g',
   location: 'Handcrafted in Cypress, TX',
@@ -91,16 +91,6 @@ const galleryItems = [
     alt: 'Premium small-batch sourdough loaf styled for bakery presentation.',
     caption: 'Small-batch baked',
   },
-  {
-    src: crumbImage,
-    alt: 'Interior crumb texture of MulliRico sourdough bread.',
-    caption: 'Open crumb',
-  },
-  {
-    src: labelImage,
-    alt: 'MulliRico bread packaging and label-inspired bakery branding.',
-    caption: 'Label details',
-  },
 ];
 
 const orderSteps = [
@@ -132,6 +122,12 @@ const contactItems = [
 ];
 
 function App() {
+  const [siteEntered, setSiteEntered] = useState(false);
+
+  if (!siteEntered) {
+    return <LandingSelector onEnterBread={() => setSiteEntered(true)} />;
+  }
+
   return (
     <div className="site-shell">
       <Header navLinks={navLinks} ordersEmail={ordersEmail} />

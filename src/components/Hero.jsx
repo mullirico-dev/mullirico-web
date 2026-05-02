@@ -6,7 +6,7 @@ function Hero({ heroImage, accentImage, ordersEmail, instagramUrl }) {
     <section id="home" className="site-hero">
       <div className="site-container hero-grid">
         <div>
-          <p className="mr-eyebrow">Cypress, Texas · Organic sourdough</p>
+          <p className="mr-eyebrow">Cypress, Texas · Artisan sourdough</p>
           <LogoWordmark className="hero-wordmark" />
           <h1 className="hero-title">
             Naturally fermented bread, baked slowly each week.
