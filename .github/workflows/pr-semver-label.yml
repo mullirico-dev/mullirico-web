@@ -24,4 +24,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validate semver label
-        run: node scripts/require-semver-label.mjs
+        env:
+          PR_LABELS_JSON: ${{ toJson(github.event.pull_request.labels) }}
+        run: |
+          node --input-type=module <<'EOF'
+          const SEMVER_LABELS = ['semver:patch', 'semver:minor', 'semver:major'];
+          const labels = JSON.parse(process.env.PR_LABELS_JSON || '[]').map(
+            (label) => label.name,
+          );
+          const matches = SEMVER_LABELS.filter((label) => labels.includes(label));
+
+          if (matches.length !== 1) {
+            console.error(
+              `Expected exactly one semver label on the pull request. Allowed labels: ${SEMVER_LABELS.join(
+                ', ',
+              )}. Current semver labels: ${matches.join(', ') || 'none'}.`,
+            );
+            process.exit(1);
+          }
+
+          console.log(`Validated semver label: ${matches[0]}`);
+          EOF
