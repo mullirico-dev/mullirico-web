@@ -37,7 +37,9 @@
   --mr-border-ink: var(--mr-ink);
 
   --mr-font-script: 'Allura', 'Pinyon Script', 'Snell Roundhand', cursive;
-  --mr-font-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --mr-font-sans:
+    'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue',
+    sans-serif;
   --mr-font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
   --mr-text-2xs: 11px;

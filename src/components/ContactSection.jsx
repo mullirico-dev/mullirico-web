@@ -1,9 +1,24 @@
 import StampSeal from './StampSeal';
-import { ArrowRightIcon, ClockIcon, InstagramIcon, MailIcon, MapPinIcon } from './Icons';
+import {
+  ArrowRightIcon,
+  ClockIcon,
+  InstagramIcon,
+  MailIcon,
+  MapPinIcon,
+} from './Icons';
 
-function ContactSection({ id, infoEmail, ordersEmail, instagramUrl, contactItems }) {
+function ContactSection({
+  id,
+  infoEmail,
+  ordersEmail,
+  instagramUrl,
+  contactItems,
+}) {
   return (
-    <section id={id} className="site-section px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section
+      id={id}
+      className="site-section px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+    >
       <div className="site-container">
         <div className="section-head">
           <div>
@@ -11,8 +26,8 @@ function ContactSection({ id, infoEmail, ordersEmail, instagramUrl, contactItems
             <h2 className="section-title">Reach MulliRico directly.</h2>
           </div>
           <p className="section-copy">
-            For orders, pickup questions, or general bakery updates, use email or send a
-            message on Instagram.
+            For orders, pickup questions, or general bakery updates, use email
+            or send a message on Instagram.
           </p>
         </div>
 
@@ -25,7 +40,9 @@ function ContactSection({ id, infoEmail, ordersEmail, instagramUrl, contactItems
                   <a
                     href={item.href}
                     target={item.href.startsWith('http') ? '_blank' : undefined}
-                    rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+                    rel={
+                      item.href.startsWith('http') ? 'noreferrer' : undefined
+                    }
                     className="contact-card__link"
                   >
                     {item.value}
@@ -42,11 +59,16 @@ function ContactSection({ id, infoEmail, ordersEmail, instagramUrl, contactItems
             <div className="contact-aside__meta">
               <div className="contact-aside__row">
                 <ClockIcon className="h-4 w-4" />
-                <p>Orders are confirmed directly as availability opens each week.</p>
+                <p>
+                  Orders are confirmed directly as availability opens each week.
+                </p>
               </div>
               <div className="contact-aside__row">
                 <MapPinIcon className="h-4 w-4" />
-                <p>Cypress, Texas pickup. Final details are shared after confirmation.</p>
+                <p>
+                  Cypress, Texas pickup. Final details are shared after
+                  confirmation.
+                </p>
               </div>
             </div>
 

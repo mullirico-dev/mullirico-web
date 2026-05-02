@@ -44,7 +44,8 @@ const featureCards = [
   {
     eyebrow: 'Bake',
     title: 'No preservatives',
-    description: 'Clean, simple bread baked in small batches in Cypress, Texas.',
+    description:
+      'Clean, simple bread baked in small batches in Cypress, Texas.',
   },
 ];
 
@@ -156,8 +157,8 @@ function App() {
                 </h2>
               </div>
               <p className="section-copy">
-                One loaf, done well. Slow fermentation, honest ingredients, and the kind of
-                crust that comes from patience — not shortcuts.
+                One loaf, done well. Slow fermentation, honest ingredients, and
+                the kind of crust that comes from patience — not shortcuts.
               </p>
             </div>
 
