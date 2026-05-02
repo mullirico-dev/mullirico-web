@@ -160,6 +160,35 @@ npm run build
 npm run preview
 ```
 
+## Deployment Flow
+
+This repository now supports two deployment targets:
+
+### `dev` branch → GitHub Pages
+
+- Every push or merge to `dev` triggers the GitHub Actions workflow:
+  - `.github/workflows/deploy-dev-pages.yml`
+- That workflow builds the Vite app with a GitHub Pages base path and deploys the `dist/` output to GitHub Pages.
+- The expected URL format is:
+  - `https://<github-username>.github.io/mullirico-web/`
+
+### `main` branch → Vercel production
+
+- Vercel should track `main` as the Production Branch.
+- Every push or merge to `main` creates the live production deployment used by:
+  - `https://www.mullirico.com`
+
+### Branch-aware Vite base path
+
+The app uses `VITE_BASE_PATH` in `vite.config.js`.
+
+- Default local/Vercel behavior:
+  - `base: /`
+- GitHub Pages workflow behavior:
+  - `base: /mullirico-web/`
+
+This allows the same app to work correctly in both environments without maintaining separate branches or configs.
+
 ## Deployment Notes
 
 The Vite config currently sets:
