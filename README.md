@@ -235,6 +235,21 @@ The repo includes:
   - requires exactly one semver label on PRs into `dev` from feature branches
 - `.github/workflows/release-dev-version.yml`
   - bumps version and creates a git tag after merge into `dev`
+- `.github/workflows/publish-tag-release.yml`
+  - publishes a GitHub Release for each new `v*` tag
+  - generates release notes automatically from merged pull requests
+  - groups changes using `.github/release.yml`
+
+### GitHub release history
+
+Every version tag is also published as a GitHub Release so you can browse:
+
+- the exact version number
+- the merged pull requests included in that version
+- the grouped change summary based on `semver:major`, `semver:minor`, and `semver:patch`
+- the full compare link between releases
+
+This gives you a repo-level release history directly in GitHub under the `Releases` tab, while the underlying git tags remain available in the `Tags` view.
 
 ### Local commands
 
