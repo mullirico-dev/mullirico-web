@@ -1,37 +1,36 @@
 import { useState } from 'react';
-import BrandMark from './BrandMark';
-import { MailIcon } from './Icons';
+import LogoWordmark from './LogoWordmark';
+import { ArrowRightIcon, MailIcon } from './Icons';
 
 function Header({ navLinks, ordersEmail }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-brown/10 bg-white/75 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <a href="#home" className="text-brown transition hover:text-gold">
-          <BrandMark compact />
+    <header className="site-header-wrap">
+      <div className="site-header">
+        <a href="#home" className="site-header__brand" aria-label="MulliRico home">
+          <LogoWordmark className="site-header__wordmark" />
         </a>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+        <nav className="site-nav hidden lg:flex" aria-label="Primary">
           {navLinks.map((link) => (
-            <a key={link.label} href={link.href} className="story-link">
+            <a key={link.label} href={link.href}>
               {link.label}
             </a>
           ))}
         </nav>
 
         <div className="hidden lg:block">
-          <a href={`mailto:${ordersEmail}`} className="btn-primary">
-            <span className="button-icon-shell" aria-hidden="true">
-              <MailIcon className="h-4 w-4" />
-            </span>
+          <a href={`mailto:${ordersEmail}`} className="mr-button-primary">
+            <MailIcon className="h-4 w-4" />
             Order by Email
+            <ArrowRightIcon className="h-4 w-4" />
           </a>
         </div>
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brown/10 bg-white text-brown shadow-soft lg:hidden"
+          className="site-menu-toggle lg:hidden"
           aria-label="Toggle navigation menu"
           aria-expanded={isOpen}
           onClick={() => setIsOpen((current) => !current)}
@@ -48,16 +47,13 @@ function Header({ navLinks, ordersEmail }) {
       </div>
 
       {isOpen ? (
-        <nav
-          aria-label="Mobile"
-          className="border-t border-brown/10 bg-soft-white px-4 py-4 shadow-soft lg:hidden"
-        >
-          <div className="mx-auto flex max-w-6xl flex-col gap-3">
+        <nav aria-label="Mobile" className="site-mobile-nav lg:hidden">
+          <div className="site-mobile-nav__inner">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="rounded-2xl px-4 py-3 text-sm font-medium text-brown transition hover:bg-parchment"
+                className="site-mobile-nav__link"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -65,13 +61,12 @@ function Header({ navLinks, ordersEmail }) {
             ))}
             <a
               href={`mailto:${ordersEmail}`}
-              className="mt-2 inline-flex items-center justify-center gap-3 rounded-full bg-olive px-5 py-3 text-sm font-semibold text-soft-white transition hover:bg-olive/90"
+              className="mr-button-primary mt-2"
               onClick={() => setIsOpen(false)}
             >
-              <span className="button-icon-shell button-icon-shell-inverse" aria-hidden="true">
-                <MailIcon className="h-4 w-4" />
-              </span>
+              <MailIcon className="h-4 w-4" />
               Order by Email
+              <ArrowRightIcon className="h-4 w-4" />
             </a>
           </div>
         </nav>

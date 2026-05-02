@@ -1,27 +1,48 @@
-import BrandMark from './BrandMark';
+import LogoWordmark from './LogoWordmark';
 
 function Footer({ instagramUrl, infoEmail, ordersEmail }) {
   return (
-    <footer className="border-t border-brown/10 px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 text-sm text-brown/70 md:flex-row md:items-center md:justify-between">
+    <footer className="site-footer-wrap px-4 py-10 sm:px-6 lg:px-8">
+      <div className="site-footer">
         <div>
-          <BrandMark />
-          <p className="script-accent mt-4 text-brown/70">Made with love. Baked for you.</p>
+          <LogoWordmark className="site-footer__wordmark" />
+          <p className="site-footer__tag">Artisan sourdough bread · Cypress, Texas</p>
         </div>
 
-        <div className="flex flex-col gap-2 md:items-end">
-          <div className="flex flex-wrap gap-4">
-            <a href={`mailto:${ordersEmail}`} className="story-link">
-              Orders
-            </a>
-            <a href={`mailto:${infoEmail}`} className="story-link">
-              Email
-            </a>
-            <a href={instagramUrl} target="_blank" rel="noreferrer" className="story-link">
-              Instagram
-            </a>
-          </div>
-          <p>© {new Date().getFullYear()} MulliRico. All rights reserved.</p>
+        <div>
+          <h5>Contact</h5>
+          <ul>
+            <li>
+              <a href={`mailto:${ordersEmail}`}>orders@mullirico.com</a>
+            </li>
+            <li>
+              <a href={`mailto:${infoEmail}`}>info@mullirico.com</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Social</h5>
+          <ul>
+            <li>
+              <a href={instagramUrl} target="_blank" rel="noreferrer">
+                Instagram
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Availability</h5>
+          <ul>
+            <li>Weekly small-batch bakes</li>
+            <li>Pickup by confirmation</li>
+          </ul>
+        </div>
+
+        <div className="site-footer__legal">
+          <span>© {new Date().getFullYear()} MulliRico</span>
+          <span>Made with care. Baked in Cypress, Texas.</span>
         </div>
       </div>
     </footer>

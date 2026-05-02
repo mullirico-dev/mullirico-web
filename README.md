@@ -30,33 +30,52 @@ Brand context:
 
 ## Design Direction
 
-The UI is intentionally built around two visual references:
+The current UI follows the quieter MulliRico design system generated from the Claude design kit.
 
-1. Vintage artisan bread label language
-2. Cleaner geometric monogram/logo styling
+The site is now intentionally:
 
-The resulting system is not a generic bakery template. It combines:
+- Typography-first
+- Beige and ink based
+- Minimal rather than decorative
+- Square-edged instead of SaaS-like rounded
+- Photography-led rather than ornament-led
+- Calm and editorial instead of sales-heavy
 
-- Warm parchment and cream surfaces
-- Deep brown editorial typography
-- Olive green badges and ribbons
-- Gold highlights for pricing and emphasis
-- Rounded paper-like cards
-- Elegant serif headlines
-- A restrained script accent for brand moments only
-- A minimal `MR` monogram treatment inspired by the uploaded logo exploration PDF
+### Design system summary
 
-### Key visual decisions
+- Default surface is warm beige, not white.
+- Primary text color is warm near-black (`--mr-ink`), not pure black.
+- The MulliRico wordmark uses a script treatment.
+- Body and UI typography use DM Sans.
+- Meta details use DM Mono.
+- Cards are white paper surfaces with thin borders and very soft shadows.
+- Buttons are simple rectangular label-style actions.
+- Icons are restrained Lucide-style line icons and only used where necessary.
 
-- `Hero`: combines editorial type, a label-style ingredient strip, and a circular `$12` price medal inspired by the provided label reference.
-- `Brand mark`: the header and product sections use a simplified `MR` monogram plus script wordmark to echo the uploaded logo concepts without depending on a final vector logo file.
-- `Product card`: styled like a premium bakery label instead of a plain ecommerce card.
-- `Order section`: remains simple and direct because there is no backend yet.
+### Design system files
+
+The repo now includes a local version of the Claude kit in:
+
+- `design-system/README.md`
+- `design-system/SKILL.md`
+- `design-system/colors_and_type.css`
+- `design-system/assets/`
+
+These files document the brand system and provide the source assets used to redesign the current implementation.
 
 ## Project Structure
 
 ```text
 mullirico-web/
+├── design-system/
+│   ├── assets/
+│   │   ├── logo-wordmark-white.svg
+│   │   ├── logo-wordmark.svg
+│   │   ├── monogram-mr.svg
+│   │   └── stamp-circular.svg
+│   ├── colors_and_type.css
+│   ├── README.md
+│   └── SKILL.md
 ├── public/
 │   └── og-cover.jpg
 ├── src/
@@ -66,11 +85,15 @@ mullirico-web/
 │   │   ├── bread-2.jpg
 │   │   ├── bread-3.jpg
 │   │   ├── bread-4.jpg
+│   │   ├── brand/
+│   │   │   ├── logo-wordmark-white.svg
+│   │   │   ├── logo-wordmark.svg
+│   │   │   ├── monogram-mr.svg
+│   │   │   └── stamp-circular.svg
 │   │   ├── crumb.jpg
 │   │   ├── label.jpg
 │   │   └── sourdough-hero.jpg
 │   ├── components/
-│   │   ├── BrandMark.jsx
 │   │   ├── ContactSection.jsx
 │   │   ├── FeatureCard.jsx
 │   │   ├── Footer.jsx
@@ -78,8 +101,11 @@ mullirico-web/
 │   │   ├── Header.jsx
 │   │   ├── Hero.jsx
 │   │   ├── IngredientsSection.jsx
+│   │   ├── Icons.jsx
+│   │   ├── LogoWordmark.jsx
 │   │   ├── OrderSection.jsx
-│   │   └── ProductSection.jsx
+│   │   ├── ProductSection.jsx
+│   │   └── StampSeal.jsx
 │   ├── App.jsx
 │   ├── index.css
 │   └── main.jsx
@@ -183,23 +209,22 @@ That includes:
 
 ### Styling and brand system
 
-Core design tokens and reusable visual classes live in:
+Core design tokens live in:
+
+- `design-system/colors_and_type.css`
+
+Project-specific implementation styles live in:
 
 - `src/index.css`
 
-That file includes:
+The relationship is:
 
-- Font imports
-- Color tokens
-- Button styles
-- Section titles and copy styles
-- Badge and ribbon styles
-- Brand mark styling
-- Hero label strip styling
+- `design-system/colors_and_type.css` defines the brand primitives
+- `src/index.css` applies those primitives to the React marketing site
 
 ## Image Management
 
-The working images are stored in:
+The working bread images are stored in:
 
 - `src/assets/`
 
@@ -211,18 +236,20 @@ Important notes:
 
 - The root `/assets` folder contains the original bread images added to the repo.
 - The app uses copies inside `src/assets/` so Vite can bundle them cleanly.
+- The brand SVG assets are available in both `design-system/assets/` and `src/assets/brand/`.
 - `sourdough-hero.jpg`, `crumb.jpg`, and `label.jpg` are temporary placeholders created from the existing photos.
 - These should be replaced with stronger dedicated brand shots when available.
 
 ## Design Review Summary
 
-The first version was functional, but there were a few quality gaps that were tightened:
+The original version was functional, but visually it drifted toward a generic premium landing page. This pass corrected that by:
 
-- The original README was too minimal for maintainability.
-- The brand language needed to align more closely with the shared label and logo references.
-- The header mark needed a more intentional identity treatment.
-- The hero needed a stronger focal point and better pricing presentation.
-- The product section benefited from a more editorial, label-inspired layout.
+- Replacing the old decorative beige gradient system with the flatter beige/ink Claude kit
+- Swapping the improvised monogram treatment for the supplied wordmark and stamp assets
+- Removing oversized rounded cards and converting the UI to square paper-like surfaces
+- Reworking CTAs to match the kit's simple rectangular button language
+- Simplifying the hero into a wordmark-first editorial composition
+- Keeping icon usage restrained and limited to practical UI needs
 
 These improvements are now implemented in code.
 
@@ -230,13 +257,12 @@ These improvements are now implemented in code.
 
 Good next steps after this version:
 
-- Replace the temporary hero, crumb, and label images with dedicated photography
-- Finalize an official vector logo and replace the CSS-based monogram
-- Add a favicon and touch icons
-- Add a real social share image designed specifically for Open Graph
+- Replace the temporary hero, crumb, and label images with a dedicated product shoot
+- Decide whether the supplied script SVG wordmark is final or still a temporary stand-in
+- Add a favicon derived from the wordmark or monogram
+- Add a proper Open Graph share image designed in the new beige/ink system
+- Confirm exact pickup cadence and any public-facing schedule copy
 - Optimize image sizes further once final photography is selected
-- Add basic analytics after deployment
-- Add a simple pickup schedule or availability notice if needed
 
 ## Verification
 

@@ -30,21 +30,21 @@ const navLinks = [
 
 const featureCards = [
   {
-    icon: 'ferment',
-    title: 'Naturally Fermented',
+    eyebrow: 'Process',
+    title: 'Naturally fermented',
     description:
-      'Slow fermentation with wild yeast for deeper flavor and better texture.',
+      'Slow fermentation with wild yeast for deeper flavor, better texture, and a loaf that keeps well.',
   },
   {
-    icon: 'ingredients',
-    title: 'Real Ingredients',
+    eyebrow: 'Ingredients',
+    title: 'Real ingredients',
     description:
       'Made with organic flour, water, sourdough starter, organic honey, extra virgin olive oil, and Himalayan salt.',
   },
   {
-    icon: 'preservative-free',
-    title: 'No Preservatives',
-    description: 'Clean, simple bread baked in small batches.',
+    eyebrow: 'Bake',
+    title: 'No preservatives',
+    description: 'Clean, simple bread baked in small batches in Cypress, Texas.',
   },
 ];
 
@@ -57,7 +57,7 @@ const productDetails = {
   ctaLabel: 'Order by Email',
   ctaHref: 'mailto:orders@mullirico.com',
   description:
-    'A golden-crusted, naturally leavened loaf with a tender crumb and balanced tang, shaped for everyday tables and slow weekend breakfasts.',
+    'Country-style sourdough with a caramel crust, balanced tang, and a soft everyday crumb made for toast, soup, and the center of the table.',
 };
 
 const ingredients = [
@@ -104,8 +104,8 @@ const galleryItems = [
 
 const orderSteps = [
   'Send us a message by email or Instagram DM.',
-  'Tell us the quantity you want and your preferred pickup date.',
-  'We confirm availability and share pickup details.',
+  'Tell us how many loaves you want and your preferred pickup day.',
+  'We confirm availability and share the final pickup details.',
 ];
 
 const contactItems = [
@@ -132,7 +132,7 @@ const contactItems = [
 
 function App() {
   return (
-    <div className="min-h-screen bg-cream text-brown">
+    <div className="site-shell">
       <Header navLinks={navLinks} ordersEmail={ordersEmail} />
 
       <main>
@@ -145,33 +145,20 @@ function App() {
 
         <section
           aria-labelledby="brand-promise-title"
-          className="section-shell px-4 py-16 sm:px-6 lg:px-8"
+          className="site-section px-4 py-16 sm:px-6 lg:px-8"
         >
-          <div className="mx-auto max-w-6xl">
-            <div className="mb-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-              <div className="max-w-2xl">
-                <p className="section-kicker">Why MulliRico</p>
+          <div className="site-container">
+            <div className="section-head">
+              <div>
+                <p className="mr-eyebrow">Why MulliRico</p>
                 <h2 id="brand-promise-title" className="section-title">
-                  Honest bread, shaped with patience.
+                  Small-batch bread. Quietly made.
                 </h2>
-                <p className="section-copy">
-                  The first MulliRico collection centers on one loaf done well: warm flavor,
-                  clean ingredients, and the kind of texture that rewards slow fermentation.
-                </p>
               </div>
-
-              <aside className="paper-panel rounded-[1.75rem] p-6 shadow-soft">
-                <p className="script-accent">Baked slowly.</p>
-                <div className="label-rule mt-5">
-                  <span>Organic ingredients</span>
-                  <span>Small-batch loaves</span>
-                  <span>Cypress, TX</span>
-                </div>
-                <p className="mt-5 text-sm leading-7 text-brown/72">
-                  MulliRico is designed to feel calm, premium, and bread-first, with the
-                  warmth of a vintage bakery label and a more refined modern layout.
-                </p>
-              </aside>
+              <p className="section-copy">
+                One loaf, done well. Slow fermentation, honest ingredients, and the kind of
+                crust that comes from patience — not shortcuts.
+              </p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-3">
