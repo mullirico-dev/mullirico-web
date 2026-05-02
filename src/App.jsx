@@ -14,8 +14,6 @@ import breadOne from './assets/bread-1.jpg';
 import breadTwo from './assets/bread-2.jpg';
 import breadThree from './assets/bread-3.jpg';
 import breadFour from './assets/bread-4.jpg';
-import crumbImage from './assets/crumb.jpg';
-import labelImage from './assets/label.jpg';
 
 const instagramUrl =
   'https://www.instagram.com/mullirico?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==';
@@ -92,16 +90,6 @@ const galleryItems = [
     src: breadFour,
     alt: 'Premium small-batch sourdough loaf styled for bakery presentation.',
     caption: 'Small-batch baked',
-  },
-  {
-    src: crumbImage,
-    alt: 'Interior crumb texture of MulliRico sourdough bread.',
-    caption: 'Open crumb',
-  },
-  {
-    src: labelImage,
-    alt: 'MulliRico bread packaging and label-inspired bakery branding.',
-    caption: 'Label details',
   },
 ];
 

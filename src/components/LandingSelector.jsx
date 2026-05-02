@@ -34,6 +34,7 @@ function LandingSelector({ onEnterBread }) {
         {/* ── Left: Sourdough Bread ── */}
         <button
           className="landing-panel landing-panel--bread"
+          type="button"
           onClick={handleBreadClick}
           aria-label="Enter Sourdough Bread section"
         >
@@ -65,52 +66,53 @@ function LandingSelector({ onEnterBread }) {
         <div className="landing-divider" aria-hidden="true" />
 
         {/* ── Right: Mully Bakes ── */}
-        <button
-          className="landing-panel landing-panel--bakes"
-          onClick={handleBakesClick}
-          aria-label="Mully Bakes — coming soon"
-        >
-          <div className="landing-panel__content">
-            {/* Toast notification */}
-            <div
-              className={`bakes-toast${bakesToast ? ' bakes-toast--visible' : ''}`}
-              aria-live="polite"
+        <div className="landing-panel landing-panel--bakes">
+          <div
+            className={`bakes-toast${bakesToast ? ' bakes-toast--visible' : ''}`}
+            aria-live="polite"
+          >
+            <p className="bakes-toast__line">Coming soon.</p>
+            <p className="bakes-toast__line">Follow us for updates.</p>
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="bakes-toast__link"
             >
-              <p className="bakes-toast__line">Coming soon.</p>
-              <p className="bakes-toast__line">Follow us for updates.</p>
-              <a
-                href={instagramUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="bakes-toast__link"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <InstagramIcon className="h-4 w-4" />
-                @mullirico
-              </a>
-            </div>
-
-            <div className="landing-panel__text">
-              <p className="landing-panel__eyebrow landing-panel__eyebrow--quiet">
-                Custom bakes
-              </p>
-              <h2 className="landing-panel__title landing-panel__title--quiet">
-                Mully
-                <br />
-                Bakes
-              </h2>
-              <hr
-                className="landing-panel__rule landing-panel__rule--quiet"
-                aria-hidden="true"
-              />
-              <p className="landing-panel__sub landing-panel__sub--quiet">
-                Cakes designed for you
-              </p>
-            </div>
-
-            <p className="landing-panel__soon">Coming soon</p>
+              <InstagramIcon className="h-4 w-4" />
+              @mullirico
+            </a>
           </div>
-        </button>
+
+          <button
+            className="landing-panel__button"
+            type="button"
+            onClick={handleBakesClick}
+            aria-label="Mully Bakes — coming soon"
+          >
+            <div className="landing-panel__content">
+              <div className="landing-panel__text">
+                <p className="landing-panel__eyebrow landing-panel__eyebrow--quiet">
+                  Custom bakes
+                </p>
+                <h2 className="landing-panel__title landing-panel__title--quiet">
+                  Mully
+                  <br />
+                  Bakes
+                </h2>
+                <hr
+                  className="landing-panel__rule landing-panel__rule--quiet"
+                  aria-hidden="true"
+                />
+                <p className="landing-panel__sub landing-panel__sub--quiet">
+                  Cakes designed for you
+                </p>
+              </div>
+
+              <p className="landing-panel__soon">Coming soon</p>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   );
