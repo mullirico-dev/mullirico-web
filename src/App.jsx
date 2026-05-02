@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import LandingSelector from './components/LandingSelector';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ProductSection from './components/ProductSection';
@@ -50,7 +52,7 @@ const featureCards = [
 ];
 
 const productDetails = {
-  name: 'Organic Sourdough Bread',
+  name: 'Artisan Sourdough Bread',
   price: 'Only $12',
   weight: 'Net wt. 800 g',
   location: 'Handcrafted in Cypress, TX',
@@ -132,6 +134,12 @@ const contactItems = [
 ];
 
 function App() {
+  const [siteEntered, setSiteEntered] = useState(false);
+
+  if (!siteEntered) {
+    return <LandingSelector onEnterBread={() => setSiteEntered(true)} />;
+  }
+
   return (
     <div className="site-shell">
       <Header navLinks={navLinks} ordersEmail={ordersEmail} />

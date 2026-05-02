@@ -672,6 +672,368 @@ button {
   font-size: 11.5px;
 }
 
+/* =============================================================
+   Landing Selector — initial product-choice screen
+   ============================================================= */
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--mr-bg);
+  opacity: 1;
+  transition: opacity var(--mr-dur-slow) var(--mr-ease-out);
+}
+
+.landing--exiting {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Header ── */
+.landing-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 40px 24px 32px;
+  border-bottom: 1px solid var(--mr-line);
+  flex-shrink: 0;
+}
+
+.landing-wordmark {
+  width: min(300px, 56vw);
+  height: auto;
+}
+
+.landing-location {
+  margin: 0;
+  font-size: var(--mr-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--mr-tracking-widest);
+  text-transform: uppercase;
+  color: var(--mr-fg-3);
+}
+
+/* ── Panels grid ── */
+.landing-panels {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  min-height: 0;
+}
+
+.landing-divider {
+  background: var(--mr-line);
+}
+
+/* ── Base panel ── */
+.landing-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* reset <button> defaults */
+  border: none;
+  border-radius: 0;
+  font: inherit;
+  text-align: left;
+  cursor: default;
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--mr-bg);
+}
+
+/*
+ * Inner content — padding lives here so the gradient-masked photo
+ * can bleed all the way to the panel edges without being clipped.
+ */
+.landing-panel__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  padding: 52px 56px;
+}
+
+.landing-panel__text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Eyebrow ── */
+.landing-panel__eyebrow {
+  margin: 0 0 20px;
+  font-family: var(--mr-font-sans);
+  font-size: var(--mr-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--mr-tracking-widest);
+  text-transform: uppercase;
+  color: var(--mr-fg-3);
+}
+
+.landing-panel__eyebrow--quiet {
+  opacity: 0.4;
+}
+
+/* ── Main title ── */
+.landing-panel__title {
+  margin: 0;
+  font-family: var(--mr-font-sans);
+  font-size: clamp(3.8rem, 6vw, 6.5rem);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  color: var(--mr-fg-1);
+}
+
+.landing-panel__title--quiet {
+  opacity: 0.2;
+}
+
+/* ── Hairline rule ── */
+.landing-panel__rule {
+  display: block;
+  width: 44px;
+  height: 1px;
+  margin: 28px 0;
+  border: none;
+  background: var(--mr-line-strong);
+}
+
+.landing-panel__rule--quiet {
+  opacity: 0.35;
+}
+
+/* ── Sub label ── */
+.landing-panel__sub {
+  margin: 0;
+  font-family: var(--mr-font-mono);
+  font-size: var(--mr-text-xs);
+  letter-spacing: var(--mr-tracking-wide);
+  color: var(--mr-fg-3);
+}
+
+.landing-panel__sub--quiet {
+  opacity: 0.45;
+}
+
+/* ── Enter CTA (bread panel only) ── */
+.landing-panel__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 40px;
+  font-family: var(--mr-font-sans);
+  font-size: var(--mr-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--mr-tracking-wider);
+  text-transform: uppercase;
+  color: var(--mr-fg-1);
+  transition: gap var(--mr-dur-fast) var(--mr-ease-out);
+}
+
+/* ── Coming soon tag (bakes panel only) ── */
+.landing-panel__soon {
+  margin: 40px 0 0;
+  font-family: var(--mr-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mr-fg-3);
+  opacity: 0.5;
+}
+
+/* ── Bread panel ── */
+.landing-panel--bread {
+  cursor: pointer;
+  background: var(--mr-bg);
+}
+
+/*
+ * Photo — fills the panel, gradient-masked so it fades
+ * left→right: transparent on the left (text side) to soft on the right.
+ * No hard borders anywhere, no dark veil — photo dissolves into the beige.
+ */
+.landing-panel__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  opacity: 0.28;
+  /* fade from transparent (left/text side) to visible (right edge) */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 28%,
+    rgba(0, 0, 0, 0.6) 55%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 28%,
+    rgba(0, 0, 0, 0.6) 55%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  transition: opacity var(--mr-dur-fast) var(--mr-ease-out);
+  pointer-events: none;
+}
+
+.landing-panel--bread:hover .landing-panel__photo {
+  opacity: 0.38;
+}
+
+.landing-panel--bread:hover .landing-panel__cta {
+  gap: 14px;
+}
+
+.landing-panel--bread:focus-visible {
+  outline: 1.5px solid var(--mr-ink);
+  outline-offset: -4px;
+}
+
+/* ── Bakes panel ── */
+.landing-panel--bakes {
+  cursor: pointer;
+  background: var(--mr-beige-deep);
+}
+
+.landing-panel--bakes:focus-visible {
+  outline: 1.5px solid var(--mr-ink);
+  outline-offset: -4px;
+}
+
+/* ── Bakes toast ── */
+.bakes-toast {
+  position: absolute;
+  top: 48px;
+  left: 56px;
+  right: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid var(--mr-line-strong);
+  background: var(--mr-white);
+  padding: 20px 24px;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition:
+    opacity var(--mr-dur) var(--mr-ease-out),
+    transform var(--mr-dur) var(--mr-ease-out);
+}
+
+.bakes-toast--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.bakes-toast__line {
+  margin: 0;
+  font-size: var(--mr-text-sm);
+  line-height: 1.5;
+  color: var(--mr-fg-2);
+}
+
+.bakes-toast__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+  font-size: var(--mr-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--mr-tracking-wider);
+  text-transform: uppercase;
+  color: var(--mr-fg-1);
+  border-bottom: 1px solid var(--mr-line-strong);
+  padding-bottom: 2px;
+  transition: color var(--mr-dur-fast) var(--mr-ease-out);
+}
+
+.bakes-toast__link:hover {
+  color: var(--mr-fg-accent);
+  border-bottom-color: var(--mr-fg-accent);
+}
+
+@media (max-width: 767px) {
+  .bakes-toast {
+    top: 32px;
+    left: 32px;
+    right: 32px;
+  }
+}
+
+@media (max-width: 479px) {
+  .bakes-toast {
+    top: 24px;
+    left: 24px;
+    right: 24px;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .landing-panels {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1px 1fr;
+  }
+
+  .landing-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .landing-panel {
+    min-height: 46vmax;
+  }
+
+  .landing-panel__content {
+    padding: 36px 32px;
+  }
+
+  /* On mobile the photo fades top→bottom instead of left→right */
+  .landing-panel__photo {
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 20%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.75) 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 20%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.75) 100%
+    );
+  }
+}
+
+@media (max-width: 479px) {
+  .landing-header {
+    padding: 28px 16px 20px;
+  }
+
+  .landing-panel__content {
+    padding: 28px 24px;
+  }
+
+  .landing-panel__title {
+    font-size: clamp(3rem, 15vw, 4.5rem);
+  }
+}
+
+/* =============================================================
+   End Landing Selector
+   ============================================================= */
+
 @media (max-width: 1023px) {
   .hero-grid,
   .section-head,
