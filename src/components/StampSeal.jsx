@@ -21,8 +21,22 @@ function StampSeal({ className = '' }) {
       </defs>
 
       {/* Double-ring border */}
-      <circle cx="120" cy="120" r="112" fill="none" stroke={ink} strokeWidth="1.5" />
-      <circle cx="120" cy="120" r="104" fill="none" stroke={ink} strokeWidth="0.6" />
+      <circle
+        cx="120"
+        cy="120"
+        r="112"
+        fill="none"
+        stroke={ink}
+        strokeWidth="1.5"
+      />
+      <circle
+        cx="120"
+        cy="120"
+        r="104"
+        fill="none"
+        stroke={ink}
+        strokeWidth="0.6"
+      />
 
       {/* Top arc label */}
       <text

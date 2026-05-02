@@ -36,7 +36,13 @@ export function InstagramIcon({ className = 'h-5 w-5' }) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="12" cy="12" r="3.75" strokeLinecap="round" strokeLinejoin="round" />
+      <circle
+        cx="12"
+        cy="12"
+        r="3.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
       <circle cx="17.25" cy="6.75" r="0.75" fill="currentColor" stroke="none" />
     </svg>
   );
@@ -53,7 +59,11 @@ export function ArrowRightIcon({ className = 'h-5 w-5' }) {
       aria-hidden="true"
     >
       <line x1="5" y1="12" x2="19" y2="12" strokeLinecap="round" />
-      <polyline points="12 5 19 12 12 19" strokeLinecap="round" strokeLinejoin="round" />
+      <polyline
+        points="12 5 19 12 12 19"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -69,7 +79,11 @@ export function ClockIcon({ className = 'h-5 w-5' }) {
       aria-hidden="true"
     >
       <circle cx="12" cy="12" r="9" />
-      <polyline points="12 7 12 12 15 14" strokeLinecap="round" strokeLinejoin="round" />
+      <polyline
+        points="12 7 12 12 15 14"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -100,7 +114,11 @@ export function CheckIcon({ className = 'h-5 w-5' }) {
       strokeWidth="1.5"
       aria-hidden="true"
     >
-      <polyline points="4 12 10 18 20 6" strokeLinecap="round" strokeLinejoin="round" />
+      <polyline
+        points="4 12 10 18 20 6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }

@@ -1,5 +1,5 @@
-@import "../design-system/colors_and_type.css";
-@import "tailwindcss";
+@import '../design-system/colors_and_type.css';
+@import 'tailwindcss';
 
 :root {
   color: var(--mr-fg-1);

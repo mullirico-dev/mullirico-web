@@ -1,6 +1,9 @@
 function Gallery({ id, items }) {
   return (
-    <section id={id} className="site-section px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section
+      id={id}
+      className="site-section px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+    >
       <div className="site-container">
         <div className="section-head section-head--compact">
           <div>
@@ -8,8 +11,8 @@ function Gallery({ id, items }) {
             <h2 className="section-title">A closer look at the loaves.</h2>
           </div>
           <p className="section-copy">
-            Warm crust, quiet crumb, and the details that make the first MulliRico loaf
-            feel handmade rather than mass produced.
+            Warm crust, quiet crumb, and the details that make the first
+            MulliRico loaf feel handmade rather than mass produced.
           </p>
         </div>
 
@@ -22,7 +25,9 @@ function Gallery({ id, items }) {
                 loading="lazy"
                 className="gallery-card__image"
               />
-              <figcaption className="gallery-card__caption">{item.caption}</figcaption>
+              <figcaption className="gallery-card__caption">
+                {item.caption}
+              </figcaption>
             </figure>
           ))}
         </div>

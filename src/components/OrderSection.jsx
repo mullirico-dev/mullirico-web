@@ -10,8 +10,9 @@ function OrderSection({ orderSteps, ordersEmail, instagramUrl }) {
             <h2 className="section-title">Direct, personal, and simple.</h2>
           </div>
           <p className="section-copy">
-            Orders are still handled directly by email or Instagram DM. That keeps the
-            first site release simple while making pickup details easy to confirm.
+            Orders are still handled directly by email or Instagram DM. That
+            keeps the first site release simple while making pickup details easy
+            to confirm.
           </p>
         </div>
 
@@ -55,7 +56,10 @@ function OrderSection({ orderSteps, ordersEmail, instagramUrl }) {
             </div>
             <div className="order-note__row">
               <CheckIcon className="h-4 w-4" />
-              <p>Best for small-batch releases, repeat buyers, and weekly availability updates.</p>
+              <p>
+                Best for small-batch releases, repeat buyers, and weekly
+                availability updates.
+              </p>
             </div>
           </aside>
         </div>

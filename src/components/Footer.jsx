@@ -6,7 +6,9 @@ function Footer({ instagramUrl, infoEmail, ordersEmail }) {
       <div className="site-footer">
         <div>
           <LogoWordmark className="site-footer__wordmark" />
-          <p className="site-footer__tag">Artisan sourdough bread · Cypress, Texas</p>
+          <p className="site-footer__tag">
+            Artisan sourdough bread · Cypress, Texas
+          </p>
         </div>
 
         <div>
