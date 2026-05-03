@@ -19,7 +19,7 @@ Brand context:
 
 - Brand: `MulliRico`
 - Location: `Cypress, Texas`
-- Core product: `Organic sourdough bread`
+- Core product: `Artisan sourdough bread`
 
 ## Tech Stack
 
