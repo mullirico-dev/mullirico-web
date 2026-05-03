@@ -85,10 +85,12 @@ function LandingSelector({ onEnterBread }) {
           </div>
 
           <button
-            className="landing-panel__button"
+            className={`landing-panel__button${bakesToast ? ' landing-panel__button--inactive' : ''}`}
             type="button"
             onClick={handleBakesClick}
             aria-label="Mully Bakes — coming soon"
+            aria-expanded={bakesToast}
+            disabled={bakesToast}
           >
             <div className="landing-panel__content">
               <div className="landing-panel__text">
