@@ -27,7 +27,6 @@ function LandingSelector({ onEnterBread }) {
       </header>
 
       <div className="landing-panels">
-
         {/* ── Left: Sourdough Bread ── */}
         <button
           className="landing-panel landing-panel--bread"
@@ -45,7 +44,9 @@ function LandingSelector({ onEnterBread }) {
             <div className="landing-panel__text">
               <p className="landing-panel__eyebrow">Artisan sourdough</p>
               <h2 className="landing-panel__title">
-                Sourdough<br />Bread
+                Sourdough
+                <br />
+                Bread
               </h2>
               <hr className="landing-panel__rule" aria-hidden="true" />
               <p className="landing-panel__sub">800 g · $12 · Small-batch</p>
@@ -62,7 +63,6 @@ function LandingSelector({ onEnterBread }) {
 
         {/* ── Right: Mully Bakes ── */}
         <div className="landing-panel landing-panel--bakes">
-
           {/* State A — tap prompt (hidden once tapped) */}
           {!bakesToast && (
             <button
@@ -77,9 +77,14 @@ function LandingSelector({ onEnterBread }) {
                     Custom bakes
                   </p>
                   <h2 className="landing-panel__title landing-panel__title--quiet">
-                    Mully<br />Bakes
+                    Mully
+                    <br />
+                    Bakes
                   </h2>
-                  <hr className="landing-panel__rule landing-panel__rule--quiet" aria-hidden="true" />
+                  <hr
+                    className="landing-panel__rule landing-panel__rule--quiet"
+                    aria-hidden="true"
+                  />
                   <p className="landing-panel__sub landing-panel__sub--quiet">
                     Cakes designed for you
                   </p>
@@ -91,7 +96,10 @@ function LandingSelector({ onEnterBread }) {
 
           {/* State B — toast (replaces the button entirely, no overlap) */}
           {bakesToast && (
-            <div className="bakes-toast bakes-toast--visible" aria-live="polite">
+            <div
+              className="bakes-toast bakes-toast--visible"
+              aria-live="polite"
+            >
               <p className="bakes-toast__heading">Coming soon</p>
               <p className="bakes-toast__line">
                 Mully Bakes is on its way — custom cakes designed for you.
@@ -116,9 +124,7 @@ function LandingSelector({ onEnterBread }) {
               </button>
             </div>
           )}
-
         </div>
-
       </div>
     </div>
   );
