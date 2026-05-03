@@ -39,7 +39,7 @@ const featureCards = [
     eyebrow: 'Ingredients',
     title: 'Real ingredients',
     description:
-      'Made with organic flour, water, sourdough starter, organic honey, extra virgin olive oil, and Himalayan salt.',
+      'Made with flour, water, sourdough starter, honey, extra virgin olive oil, and Himalayan salt.',
   },
   {
     eyebrow: 'Bake',
@@ -62,11 +62,11 @@ const productDetails = {
 };
 
 const ingredients = [
-  { name: 'Organic all-purpose flour', icon: 'flour' },
+  { name: 'All-purpose flour', icon: 'flour' },
   { name: 'Water', icon: 'water' },
-  { name: 'Sourdough starter (organic flour, water)', icon: 'starter' },
-  { name: 'Organic honey', icon: 'honey' },
-  { name: 'Organic extra virgin olive oil', icon: 'oil' },
+  { name: 'Sourdough starter (flour, water)', icon: 'starter' },
+  { name: 'Honey', icon: 'honey' },
+  { name: 'Extra virgin olive oil', icon: 'oil' },
   { name: 'Himalayan salt', icon: 'salt' },
 ];
 

@@ -38,12 +38,15 @@ describe('App', () => {
   it('shows the coming-soon toast for mully bakes', () => {
     render(<App />);
 
-    fireEvent.click(
-      screen.getByRole('button', { name: /mully bakes — coming soon/i }),
-    );
+    const bakesButton = screen.getByRole('button', {
+      name: /mully bakes — coming soon/i,
+    });
+
+    fireEvent.click(bakesButton);
 
     expect(screen.getByText(/coming soon\./i)).toBeInTheDocument();
     expect(screen.getByText(/follow us for updates\./i)).toBeInTheDocument();
+    expect(bakesButton).toBeDisabled();
     expect(screen.getByRole('link', { name: /@mullirico/i })).toHaveAttribute(
       'href',
       expect.stringContaining('instagram.com/mullirico'),
@@ -82,13 +85,13 @@ describe('App', () => {
 
     expect(ingredientsSection).not.toBeNull();
     expect(
-      within(ingredientsSection).getByText(/organic all-purpose flour/i),
+      within(ingredientsSection).getByText(/all-purpose flour/i),
     ).toBeInTheDocument();
     expect(
       within(ingredientsSection).getByText(/^water$/i),
     ).toBeInTheDocument();
     expect(
-      within(ingredientsSection).getByText(/organic extra virgin olive oil/i),
+      within(ingredientsSection).getByText(/extra virgin olive oil/i),
     ).toBeInTheDocument();
     expect(
       within(ingredientsSection).getByText(/^himalayan salt$/i),
