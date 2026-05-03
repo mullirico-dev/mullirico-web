@@ -15,10 +15,6 @@ function LandingSelector({ onEnterBread }) {
     setTimeout(onEnterBread, 420);
   }
 
-  function handleBakesClick() {
-    setBakesToast(true);
-  }
-
   return (
     <div
       className={`landing${isExiting ? ' landing--exiting' : ''}`}
@@ -31,6 +27,7 @@ function LandingSelector({ onEnterBread }) {
       </header>
 
       <div className="landing-panels">
+
         {/* ── Left: Sourdough Bread ── */}
         <button
           className="landing-panel landing-panel--bread"
@@ -48,9 +45,7 @@ function LandingSelector({ onEnterBread }) {
             <div className="landing-panel__text">
               <p className="landing-panel__eyebrow">Artisan sourdough</p>
               <h2 className="landing-panel__title">
-                Sourdough
-                <br />
-                Bread
+                Sourdough<br />Bread
               </h2>
               <hr className="landing-panel__rule" aria-hidden="true" />
               <p className="landing-panel__sub">800 g · $12 · Small-batch</p>
@@ -67,54 +62,63 @@ function LandingSelector({ onEnterBread }) {
 
         {/* ── Right: Mully Bakes ── */}
         <div className="landing-panel landing-panel--bakes">
-          <div
-            className={`bakes-toast${bakesToast ? ' bakes-toast--visible' : ''}`}
-            aria-live="polite"
-          >
-            <p className="bakes-toast__line">Coming soon.</p>
-            <p className="bakes-toast__line">Follow us for updates.</p>
-            <a
-              href={instagramUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="bakes-toast__link"
+
+          {/* State A — tap prompt (hidden once tapped) */}
+          {!bakesToast && (
+            <button
+              className="landing-panel__button"
+              type="button"
+              onClick={() => setBakesToast(true)}
+              aria-label="Mully Bakes — tap to see more"
             >
-              <InstagramIcon className="h-4 w-4" />
-              @mullirico
-            </a>
-          </div>
-
-          <button
-            className={`landing-panel__button${bakesToast ? ' landing-panel__button--inactive' : ''}`}
-            type="button"
-            onClick={handleBakesClick}
-            aria-label="Mully Bakes — coming soon"
-            aria-expanded={bakesToast}
-            disabled={bakesToast}
-          >
-            <div className="landing-panel__content">
-              <div className="landing-panel__text">
-                <p className="landing-panel__eyebrow landing-panel__eyebrow--quiet">
-                  Custom bakes
-                </p>
-                <h2 className="landing-panel__title landing-panel__title--quiet">
-                  Mully
-                  <br />
-                  Bakes
-                </h2>
-                <hr
-                  className="landing-panel__rule landing-panel__rule--quiet"
-                  aria-hidden="true"
-                />
-                <p className="landing-panel__sub landing-panel__sub--quiet">
-                  Cakes designed for you
-                </p>
+              <div className="landing-panel__content">
+                <div className="landing-panel__text">
+                  <p className="landing-panel__eyebrow landing-panel__eyebrow--quiet">
+                    Custom bakes
+                  </p>
+                  <h2 className="landing-panel__title landing-panel__title--quiet">
+                    Mully<br />Bakes
+                  </h2>
+                  <hr className="landing-panel__rule landing-panel__rule--quiet" aria-hidden="true" />
+                  <p className="landing-panel__sub landing-panel__sub--quiet">
+                    Cakes designed for you
+                  </p>
+                </div>
+                <p className="landing-panel__soon">Coming soon</p>
               </div>
+            </button>
+          )}
 
-              <p className="landing-panel__soon">Coming soon</p>
+          {/* State B — toast (replaces the button entirely, no overlap) */}
+          {bakesToast && (
+            <div className="bakes-toast bakes-toast--visible" aria-live="polite">
+              <p className="bakes-toast__heading">Coming soon</p>
+              <p className="bakes-toast__line">
+                Mully Bakes is on its way — custom cakes designed for you.
+                Follow us on Instagram for updates.
+              </p>
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="bakes-toast__link"
+              >
+                <InstagramIcon className="h-4 w-4" />
+                Follow @mullirico
+              </a>
+              <button
+                type="button"
+                className="bakes-toast__dismiss"
+                onClick={() => setBakesToast(false)}
+                aria-label="Dismiss"
+              >
+                ✕
+              </button>
             </div>
-          </button>
+          )}
+
         </div>
+
       </div>
     </div>
   );
