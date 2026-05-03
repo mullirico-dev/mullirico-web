@@ -31,7 +31,7 @@ describe('App', () => {
       screen.getByRole('button', { name: /enter sourdough bread section/i }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('button', { name: /mully bakes — coming soon/i }),
+      screen.getByRole('button', { name: /mully bakes — tap to see more/i }),
     ).toBeInTheDocument();
   });
 
@@ -39,18 +39,29 @@ describe('App', () => {
     render(<App />);
 
     const bakesButton = screen.getByRole('button', {
-      name: /mully bakes — coming soon/i,
+      name: /mully bakes — tap to see more/i,
     });
 
     fireEvent.click(bakesButton);
 
-    expect(screen.getByText(/coming soon\./i)).toBeInTheDocument();
-    expect(screen.getByText(/follow us for updates\./i)).toBeInTheDocument();
-    expect(bakesButton).toBeDisabled();
-    expect(screen.getByRole('link', { name: /@mullirico/i })).toHaveAttribute(
+    expect(screen.getByText(/^coming soon$/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /mully bakes is on its way — custom cakes designed for you\./i,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /mully bakes — tap to see more/i }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /follow @mullirico/i }),
+    ).toHaveAttribute(
       'href',
       expect.stringContaining('instagram.com/mullirico'),
     );
+    expect(
+      screen.getByRole('button', { name: /dismiss/i }),
+    ).toBeInTheDocument();
   });
 
   it('renders the main hero, product, and contact content after entering the bread site', () => {
