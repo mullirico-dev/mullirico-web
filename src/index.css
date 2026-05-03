@@ -808,10 +808,6 @@ button {
   -webkit-appearance: none;
 }
 
-.landing-panel__button--inactive {
-  pointer-events: none;
-}
-
 /*
  * Inner content — padding lives here so the gradient-masked photo
  * can bleed all the way to the panel edges without being clipped.
@@ -967,8 +963,24 @@ button {
 
 /* ── Bakes panel ── */
 .landing-panel--bakes {
-  cursor: pointer;
   background: var(--mr-beige-deep);
+}
+
+/* Inner button — full-panel tap target for the "coming soon" state */
+.landing-panel__button {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .landing-panel__button:focus-visible {
@@ -976,74 +988,124 @@ button {
   outline-offset: -4px;
 }
 
-/* ── Bakes toast ── */
+/*
+ * Bakes toast — replaces the button entirely via conditional rendering.
+ * No overlapping elements, so iOS touch events work without any workarounds.
+ */
 .bakes-toast {
-  position: absolute;
-  z-index: 2;
-  top: 48px;
-  left: 56px;
-  right: 56px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  border: 1px solid var(--mr-line-strong);
-  background: var(--mr-white);
-  padding: 20px 24px;
+  flex: 1;
+  width: 100%;
+  padding: 52px 56px;
   opacity: 0;
-  transform: translateY(-6px);
-  pointer-events: none;
-  transition:
-    opacity var(--mr-dur) var(--mr-ease-out),
-    transform var(--mr-dur) var(--mr-ease-out);
+  transform: translateY(8px);
+  animation: toastIn var(--mr-dur) var(--mr-ease-out) forwards;
+}
+
+@keyframes toastIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .bakes-toast--visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+  /* Class present immediately; animation drives the reveal */
+}
+
+.bakes-toast__heading {
+  margin: 0 0 16px;
+  font-family: var(--mr-font-sans);
+  font-size: clamp(3.8rem, 6vw, 6.5rem);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  color: var(--mr-fg-1);
+  opacity: 0.25;
 }
 
 .bakes-toast__line {
   margin: 0;
+  max-width: 28ch;
   font-size: var(--mr-text-sm);
-  line-height: 1.5;
+  line-height: 1.7;
   color: var(--mr-fg-2);
 }
 
+/* Instagram link — 44px min tap target for iOS */
 .bakes-toast__link {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  margin-top: 14px;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 24px;
+  padding: 10px 18px;
+  border: 1px solid var(--mr-line-strong);
+  background: var(--mr-white);
   font-size: var(--mr-text-xs);
   font-weight: 500;
   letter-spacing: var(--mr-tracking-wider);
   text-transform: uppercase;
   color: var(--mr-fg-1);
-  border-bottom: 1px solid var(--mr-line-strong);
-  padding-bottom: 2px;
+  align-self: flex-start;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background var(--mr-dur-fast) var(--mr-ease-out),
+    color var(--mr-dur-fast) var(--mr-ease-out);
+}
+
+.bakes-toast__link:hover,
+.bakes-toast__link:active {
+  background: var(--mr-ink);
+  color: var(--mr-beige);
+  border-color: var(--mr-ink);
+}
+
+/* Dismiss button — top-right corner */
+.bakes-toast__dismiss {
+  position: absolute;
+  top: 52px;
+  right: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: none;
+  background: transparent;
+  font-size: var(--mr-text-sm);
+  color: var(--mr-fg-3);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   transition: color var(--mr-dur-fast) var(--mr-ease-out);
 }
 
-.bakes-toast__link:hover {
-  color: var(--mr-fg-accent);
-  border-bottom-color: var(--mr-fg-accent);
+.bakes-toast__dismiss:hover {
+  color: var(--mr-fg-1);
 }
 
 @media (max-width: 767px) {
   .bakes-toast {
-    top: 32px;
-    left: 32px;
-    right: 32px;
+    padding: 36px 32px;
+  }
+
+  .bakes-toast__dismiss {
+    top: 24px;
+    right: 20px;
   }
 }
 
 @media (max-width: 479px) {
   .bakes-toast {
-    top: 24px;
-    left: 24px;
-    right: 24px;
+    padding: 28px 24px;
+  }
+
+  .bakes-toast__dismiss {
+    top: 16px;
+    right: 12px;
   }
 }
 
