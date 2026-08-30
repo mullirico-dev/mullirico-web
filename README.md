@@ -142,11 +142,16 @@ npm install
 npm run dev
 ```
 
-Vite usually starts on:
+Vite starts on all local interfaces. Open it on the Mac or a physical iPad on the same trusted
+Wi-Fi:
 
 ```text
-http://localhost:5173/
+Mac:  http://localhost:5173/
+iPad: http://<mac-lan-ip>:5173/
 ```
+
+This development server is for LAN testing only. Do not add router port forwarding or a public
+tunnel.
 
 ### Build for production
 
@@ -371,7 +376,7 @@ Good next steps after this version:
 Verified locally:
 
 - `npm run build`
-- `npm run dev -- --host 127.0.0.1 --port 4173`
+- `npm run dev` on the fixed LAN-accessible port `5173`
 
 ## Notes for Future Work
 

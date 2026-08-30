@@ -122,7 +122,7 @@ button {
 }
 
 .site-menu-toggle {
-  display: inline-flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 44px;
@@ -210,6 +210,7 @@ button {
   font-size: clamp(2.5rem, 6vw, 5.5rem);
   font-weight: 300;
   letter-spacing: -0.03em;
+  word-spacing: 0.03em;
   line-height: 1;
   text-wrap: pretty;
 }
@@ -348,6 +349,7 @@ button {
   font-size: var(--mr-text-xl);
   font-weight: 400;
   letter-spacing: -0.01em;
+  word-spacing: 0.01em;
   line-height: 1.15;
   color: var(--mr-fg-1);
 }
@@ -406,6 +408,7 @@ button {
   font-size: clamp(1.8rem, 3vw, 2.7rem);
   font-weight: 400;
   letter-spacing: -0.02em;
+  word-spacing: 0.02em;
   line-height: 1.05;
 }
 
@@ -749,6 +752,15 @@ button {
   flex-shrink: 0;
 }
 
+/* A plain flex item, not `display: contents`: WebKit has historically
+   dropped `display: contents` elements from the accessibility tree, which
+   would remove the page's only heading. */
+.landing-title {
+  display: flex;
+  margin: 0;
+  line-height: 0;
+}
+
 .landing-wordmark {
   width: min(300px, 56vw);
   height: auto;
@@ -849,6 +861,7 @@ button {
   font-size: clamp(3.8rem, 6vw, 6.5rem);
   font-weight: 300;
   letter-spacing: -0.035em;
+  word-spacing: 0.035em;
   line-height: 0.95;
   color: var(--mr-fg-1);
 }
@@ -1020,6 +1033,7 @@ button {
   font-size: clamp(3.8rem, 6vw, 6.5rem);
   font-weight: 300;
   letter-spacing: -0.035em;
+  word-spacing: 0.035em;
   line-height: 0.95;
   color: var(--mr-fg-1);
   opacity: 0.25;
@@ -1167,6 +1181,19 @@ button {
    ============================================================= */
 
 @media (max-width: 1023px) {
+  /* These component rules intentionally own responsive navigation display.
+     The custom `.site-nav` and `.site-menu-toggle` selectors come after
+     Tailwind's utilities and otherwise override `hidden lg:*`, leaving both
+     navigation modes visible and forcing horizontal overflow on phones. */
+  .site-nav {
+    display: none;
+  }
+
+  .site-menu-toggle {
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+
   .hero-grid,
   .section-head,
   .product-grid,
@@ -1262,5 +1289,28 @@ button {
   /* Order grid: tighten on small screens */
   .order-actions {
     flex-direction: column;
+  }
+}
+
+/* ===========================================================
+   Reduced motion
+
+   The landing selector animates out over 420 ms, panels fade, and the toast
+   slides. None of it carried a `prefers-reduced-motion` guard, so a visitor
+   who has asked their operating system to stop moving interfaces was moved
+   anyway. Motion is collapsed rather than removed, so every transition
+   still lands on its final state and nothing depends on an animation to
+   become visible.
+   =========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
   }
 }

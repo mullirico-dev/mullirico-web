@@ -22,7 +22,12 @@ function LandingSelector({ onEnterBread }) {
     >
       {/* Shared header */}
       <header className="landing-header">
-        <LogoWordmark className="landing-wordmark" />
+        {/* The landing page is the site's entry point, so the shop name is
+            its heading. Without it the first thing a search engine and a
+            screen reader meet is two section headings and no page title. */}
+        <h1 className="landing-title">
+          <LogoWordmark className="landing-wordmark" />
+        </h1>
         <p className="landing-location">Handcrafted in Cypress, Texas</p>
       </header>
 
