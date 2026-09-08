@@ -12,4 +12,9 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
   },
+  preview: {
+    // Lets a local container-based browser (host.docker.internal) reach
+    // the preview server for pre-deploy validation.
+    allowedHosts: ['host.docker.internal'],
+  },
 });

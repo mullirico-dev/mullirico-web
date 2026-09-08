@@ -1,146 +1,89 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import { render, screen, within } from '@testing-library/react';
 import App from './App';
+import { samplers } from './content/site';
+import { cafeJsonLd } from './seo';
 
-function renderAndEnterBreadSite() {
-  render(<App />);
-
-  vi.useFakeTimers();
-  fireEvent.click(
-    screen.getByRole('button', { name: /enter sourdough bread section/i }),
-  );
-
-  act(() => {
-    vi.advanceTimersByTime(420);
-  });
-
-  vi.useRealTimers();
-}
-
-describe('App', () => {
-  afterEach(() => {
-    vi.useRealTimers();
-  });
-
-  it('renders the landing selector by default', () => {
+describe('single-page site', () => {
+  it('renders the shop name as the page heading', () => {
     render(<App />);
-
-    expect(
-      screen.getByText(/handcrafted in cypress, texas/i),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: /enter sourdough bread section/i }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: /mully bakes — tap to see more/i }),
-    ).toBeInTheDocument();
+    const heading = screen.getByRole('heading', { level: 1 });
+    expect(within(heading).getByAltText('MulliRico')).toBeInTheDocument();
   });
 
-  it('shows the coming-soon toast for mully bakes', () => {
+  it('states the opening status and address', () => {
     render(<App />);
-
-    const bakesButton = screen.getByRole('button', {
-      name: /mully bakes — tap to see more/i,
-    });
-
-    fireEvent.click(bakesButton);
-
-    expect(screen.getByText(/^coming soon$/i)).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        /mully bakes is on its way — custom cakes designed for you\./i,
-      ),
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByRole('button', { name: /mully bakes — tap to see more/i }),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.getByRole('link', { name: /follow @mullirico/i }),
-    ).toHaveAttribute(
-      'href',
-      expect.stringContaining('instagram.com/mullirico'),
+    expect(screen.getAllByText(/Opening November 2026/).length).toBeGreaterThan(
+      0,
     );
-    expect(
-      screen.getByRole('button', { name: /dismiss/i }),
-    ).toBeInTheDocument();
+    expect(screen.getAllByText(/9522 Huffmeister Rd/).length).toBeGreaterThan(
+      0,
+    );
   });
 
-  it('renders the main hero, product, and contact content after entering the bread site', () => {
-    renderAndEnterBreadSite();
-
+  it('uses the camel band tagline exactly once', () => {
+    render(<App />);
     expect(
-      screen.getByRole('heading', {
-        name: /naturally fermented bread, baked slowly each week\./i,
-      }),
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByRole('heading', {
-        name: /our signature sourdough/i,
-      }),
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByRole('heading', {
-        name: /reach mullirico directly/i,
-      }),
-    ).toBeInTheDocument();
-  });
-
-  it('renders the expected ingredient cards after entering the bread site', () => {
-    renderAndEnterBreadSite();
-
-    const ingredientsHeading = screen.getByRole('heading', {
-      name: /simple, clear, and carefully chosen/i,
-    });
-    const ingredientsSection = ingredientsHeading.closest('section');
-
-    expect(ingredientsSection).not.toBeNull();
-    expect(
-      within(ingredientsSection).getByText(/all-purpose flour/i),
-    ).toBeInTheDocument();
-    expect(
-      within(ingredientsSection).getByText(/^water$/i),
-    ).toBeInTheDocument();
-    expect(
-      within(ingredientsSection).getByText(/extra virgin olive oil/i),
-    ).toBeInTheDocument();
-    expect(
-      within(ingredientsSection).getByText(/^himalayan salt$/i),
-    ).toBeInTheDocument();
-  });
-
-  it('renders ordering links with the correct destinations after entering the bread site', () => {
-    renderAndEnterBreadSite();
-
-    const orderLinks = screen.getAllByRole('link', { name: /order by email/i });
-    expect(orderLinks.length).toBeGreaterThan(0);
-
-    for (const link of orderLinks) {
-      expect(link).toHaveAttribute('href', 'mailto:orders@mullirico.com');
-    }
-
-    const instagramLinks = screen.getAllByRole('link', { name: /instagram/i });
-    expect(instagramLinks.length).toBeGreaterThan(0);
-    expect(
-      instagramLinks.some((link) =>
-        link.getAttribute('href')?.includes('instagram.com/mullirico'),
+      screen.getAllByText(
+        'Crafted from scratch · Real ingredients · No shortcuts',
       ),
-    ).toBe(true);
+    ).toHaveLength(1);
   });
 
-  it('renders only unique gallery images after entering the bread site', () => {
-    renderAndEnterBreadSite();
+  it('shows the three craft chapters and the visit section', () => {
+    render(<App />);
+    for (const title of [
+      /Specialty coffee/,
+      /It all began/,
+      /Homemade/,
+      /Family-run/,
+      /Come find us/,
+    ]) {
+      expect(screen.getByRole('heading', { name: title })).toBeInTheDocument();
+    }
+  });
 
-    const galleryHeading = screen.getByRole('heading', {
-      name: /a closer look at the loaves/i,
+  it('shows sampler items from the content source', () => {
+    render(<App />);
+    for (const item of [
+      ...samplers.coffee,
+      ...samplers.sourdough,
+      ...samplers.bakery,
+    ]) {
+      expect(screen.getAllByText(item).length).toBeGreaterThan(0);
+    }
+  });
+
+  it('never shows a price', () => {
+    const { container } = render(<App />);
+    expect(container.textContent).not.toMatch(/\$\d/);
+  });
+
+  it('shows an hours-coming-soon slot', () => {
+    render(<App />);
+    expect(screen.getAllByText('Hours coming soon').length).toBeGreaterThan(0);
+  });
+
+  it('links the floating header to the visit section, not to other pages', () => {
+    render(<App />);
+    // The floating header is aria-hidden until the user scrolls past the
+    // hero, so include hidden elements in the query.
+    const cta = screen.getByRole('link', {
+      name: 'Plan a visit',
+      hidden: true,
     });
-    const gallerySection = galleryHeading.closest('section');
-    expect(gallerySection).not.toBeNull();
+    expect(cta).toHaveAttribute('href', '#visit');
+  });
+});
 
-    const images = within(gallerySection).getAllByRole('img');
-    expect(images).toHaveLength(4);
-
-    const imageSources = images.map((image) => image.getAttribute('src'));
-    expect(new Set(imageSources).size).toBe(images.length);
+describe('structured data', () => {
+  it('describes the cafe with its real address and phone, without a menu URL', () => {
+    const data = cafeJsonLd();
+    expect(data['@type']).toBe('CafeOrCoffeeShop');
+    expect(data.address.streetAddress).toBe('9522 Huffmeister Rd, Suite 700');
+    expect(data.address.addressLocality).toBe('Houston');
+    expect(data.address.postalCode).toBe('77095');
+    expect(data.telephone).toBe('+1-346-563-8998');
+    expect(data.hasMenu).toBeUndefined();
   });
 });

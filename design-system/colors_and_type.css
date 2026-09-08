@@ -3,9 +3,24 @@
    Artisan sourdough bakery — minimal, natural, typography-first
    =========================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Allura&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap');
 
 :root {
+  /* Café identity — additive tokens for the MulliRico café and bakery brand.
+     Sibling surfaces keep resolving the original tokens below unchanged. */
+  --mr-cafe-base: #f7f1e6;
+  --mr-cafe-cream: #fbf7f0;
+  --mr-cafe-camel: #b08d62;
+  --mr-cafe-espresso: #3e2b20;
+  --mr-cafe-roast: #241812;
+  --mr-cafe-sage: #7c8a6e;
+  /* Sage passes AA only at large sizes on the cafe base; this darker step
+     is the small-text variant. */
+  --mr-cafe-sage-deep: #5a654f;
+
+  --mr-font-display-serif:
+    'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+
   --mr-black: #000000;
   --mr-white: #ffffff;
   --mr-beige: #f5f1e8;
