@@ -5,7 +5,7 @@ SHELL := /bin/bash
 help:
 	@echo "Available targets:"
 	@echo "  make install        Install dependencies"
-	@echo "  make dev            Start the Vite dev server"
+	@echo "  make dev            Start the LAN-accessible Vite server on port 5173"
 	@echo "  make build          Build the app"
 	@echo "  make preview        Preview the production build"
 	@echo "  make format         Format the repository with Prettier"
